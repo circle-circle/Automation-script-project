@@ -12,7 +12,7 @@ class search:
     browser = None
     chrome_opt = Options()
 
-    def __init__(self, search="", browser='Chrome', delay=2, head_less=False):
+    def __init__(self, search="", page=1,browser='Chrome', delay=2, head_less=False):
         chrome_options = webdriver.ChromeOptions()
         #chrome_options.add_argument('--headless')
         chrome_options.add_argument('--no-sandbox')
@@ -22,7 +22,7 @@ class search:
 
         #self.browser = webdriver.Chrome(executable_path=ChromeDriverManager().install())
 
-        self.browser.get(f'https://www.pexels.com/search/{search}')
+        self.browser.get(f'https://www.pexels.com/search/{search}/?page={page}')
         time.sleep(delay)
         print('You are using pexels.com - Free stock photos')
         result=self.browser.find_elements_by_xpath('//div[@class="search__grid"]/div[@class="photos"]/div[@class="photos__column"]/div[@class="hide-featured-badge hide-favorite-badge"]/article/a[1]')
@@ -58,3 +58,8 @@ class search:
             #quit()
         except:
             pass
+
+keyword="dog"
+for page in range(1,50):        
+    search(keyword,page).download()        
+        
