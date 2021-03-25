@@ -20,12 +20,12 @@ for f in files:
         height = picture.height
         picture.close()
         if width > height:
-           shutil.move( path+f, hengping_path)
+           shutil.move(path+f, hengping_path)
            print("{f} moved to {hengping_path}")
         else:
            #shutil.move(lujing, hengping_path)
-           shutil.move( path+f , shuping_path)
-           print('{f} moved to {shuiping_path}')
+           shutil.move(path+f , shuping_path)
+           print(f'{f} moved to {shuiping_path}')
     else:
         pass
 input('please input any key to exit!')
