@@ -2,8 +2,6 @@ import time
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.firefox import GeckoDriverManager
-
 # Downloader for pexels.com
 
 class search:
@@ -12,7 +10,7 @@ class search:
     browser = None
     chrome_opt = Options()
 
-    def __init__(self, search="", page=1,browser='Chrome', delay=2, head_less=False):
+    def __init__(self, search="", page=1,browser='Chrome', delay=2):
         chrome_options = webdriver.ChromeOptions()
         #chrome_options.add_argument('--headless')
         chrome_options.add_argument('--no-sandbox')
@@ -46,29 +44,29 @@ class search:
     def download(self, delay=1):
         if self.photo_url.__len__() > 0:
             count = 0
-            print(f'Looking for possible ...{self.photo_url.__len__()} Wallpapers')
-            for l1 in self.photo_url:
+            print(f'Looking for {self.photo_url.__len__()} Wallpapers')
+            for url in self.photo_url:
                 try:
-                    print(l1)
-                    self.browser.get(l1)
+                    print(url)
+                    self.browser.get(url)
                     time.sleep(delay)
-                    dn = self.browser.find_element_by_class_name('rd__button--download')
-                    time.sleep(1)
-                    dn.click()
+                    click_button = self.browser.find_element_by_class_name('rd__button--download')
+                    #time.sleep(1)
+                    click_button.click()
                     time.sleep(2)
                     count = count + 1
                 except:
                     pass
-            print(f'{count}  wallpapers downloaded')
+            print(f'{count} photos downloaded')
         else:
             print('No photo found, slow internet connection may be')
             self.__del__()
 
     def __del__(self):
         try:
-            #self.browser.close()
+            self.browser.close()
             print('Completed')
-            #quit()
+            quit()
         except:
             pass
 
