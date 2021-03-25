@@ -21,8 +21,8 @@ class search:
         self.browser=webdriver.Chrome(executable_path='c:/chromedriver.exe', options=chrome_options)
 
         #self.browser = webdriver.Chrome(executable_path=ChromeDriverManager().install())
-
-        self.browser.get(f'https://www.pexels.com/search/{search}/')
+        self.browser.get(f'https://www.pexels.com/search/')
+        #self.browser.get(f'https://www.pexels.com/search/{search}/')
         time.sleep(delay)
         print('You are using pexels.com - Free stock photos')
         js = "window.scrollTo(0,document.body.scrollHeight)"
@@ -32,7 +32,10 @@ class search:
             time.sleep(1)
             page+=1
         time.sleep(1)
-        result=self.browser.find_elements_by_xpath('//div[@class="search__grid"]/div[@class="photos"]/div[@class="photos__column"]/div[@class="hide-featured-badge hide-favorite-badge"]/article/a[1]')
+        #Download directly through the home page without entering search keywords
+        result=self.browser.find_elements_by_xpath('//div[@class="photos"]/div[@class="photos__column"]/div[@class="hide-featured-badge hide-favorite-badge"]/article/a[1]') 
+        #Download directly through the home page with entering search keywords
+        #result=self.browser.find_elements_by_xpath('//div[@class="search__grid"]/div[@class="photos"]/div[@class="photos__column"]/div[@class="hide-featured-badge hide-favorite-badge"]/article/a[1]')
         for url in result:
             photo=url.get_property('href')
             self.photo_url.append(photo)
@@ -66,7 +69,10 @@ class search:
         except:
             pass
 
-keyword="dog"
-for page in range(1,50):        
-    search(keyword,page).download()        
-        
+# with entering search keywords
+#keyword="dog"
+#for page in range(1,50):        
+#    search(keyword,page).download() 
+    
+#without entering search keywords from homepage
+search().download()      
