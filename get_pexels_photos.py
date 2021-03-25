@@ -33,7 +33,11 @@ class search:
             page+=1
         time.sleep(1)
         #Download directly through the home page without entering search keywords
-        result=self.browser.find_elements_by_xpath('//div[@class="photos"]/div[@class="photos__column"]/div[@class="hide-featured-badge hide-favorite-badge"]/article/a[1]') 
+        #result=self.browser.find_elements_by_xpath('//div[@class="photos"]/div[@class="photos__column"]/div[@class="hide-featured-badge hide-favorite-badge"]/article/a[1]') 
+        
+        #Download photos without videos from homepage
+        result=self.browser.find_elements_by_xpath('//div[@class="photos"]/div[@class="photos__column"]/div[@class="hide-featured-badge hide-favorite-badge" and not(@data-track-action="videos")]/article/a[1]')  
+        
         #Download directly through the home page with entering search keywords
         #result=self.browser.find_elements_by_xpath('//div[@class="search__grid"]/div[@class="photos"]/div[@class="photos__column"]/div[@class="hide-featured-badge hide-favorite-badge"]/article/a[1]')
         for url in result:
