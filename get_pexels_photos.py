@@ -25,6 +25,13 @@ class search:
         self.browser.get(f'https://www.pexels.com/search/{search}/?page={page}')
         time.sleep(delay)
         print('You are using pexels.com - Free stock photos')
+        js = "window.scrollTo(0,document.body.scrollHeight)"
+        self.browser.execute_script(js)
+        while page <30:
+            self.browser.execute_script(js)
+            time.sleep(1)
+            page+=1
+        time.sleep(1)
         result=self.browser.find_elements_by_xpath('//div[@class="search__grid"]/div[@class="photos"]/div[@class="photos__column"]/div[@class="hide-featured-badge hide-favorite-badge"]/article/a[1]')
         for url in result:
             photo=url.get_property('href')
