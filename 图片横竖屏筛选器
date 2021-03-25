@@ -21,7 +21,7 @@ for f in files:
         picture.close()
         if width > height:
            shutil.move(path+f, hengping_path)
-           print("{f} moved to {hengping_path}")
+           print(f'{f} moved to {hengping_path}')
         else:
            #shutil.move(lujing, hengping_path)
            shutil.move(path+f , shuping_path)
