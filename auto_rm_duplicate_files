@@ -1,0 +1,14 @@
+import os
+
+path="C:/Users/Administrator/Downloads/"
+
+files=os.listdir(path)
+keyword=")"
+n=1
+for f in files:
+    if keyword in f:
+        n=n+1
+        os.remove(path+f)
+    else:
+        pass
+print(f"deleted {n} duplicate photos")   
