@@ -27,9 +27,8 @@ class search:
         print('You are using pexels.com - Free stock photos')
         js = "window.scrollTo(0,document.body.scrollHeight)"
         self.browser.execute_script(js)
-        while page <30:
-            self.browser.execute_script(js)
-            time.sleep(1)
+        while page < 100:
+            self.browser.execute_script(js) 
             page+=1
         time.sleep(1)
         #Download directly through the home page without entering search keywords
@@ -56,7 +55,7 @@ class search:
                     dn = self.browser.find_element_by_class_name('rd__button--download')
                     time.sleep(1)
                     dn.click()
-                    time.sleep(3)
+                    time.sleep(2)
                     count = count + 1
                 except:
                     pass
