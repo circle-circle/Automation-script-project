@@ -22,7 +22,7 @@ class search:
 
         #self.browser = webdriver.Chrome(executable_path=ChromeDriverManager().install())
 
-        self.browser.get(f'https://www.pexels.com/search/{search}/?page={page}')
+        self.browser.get(f'https://www.pexels.com/search/{search}/')
         time.sleep(delay)
         print('You are using pexels.com - Free stock photos')
         js = "window.scrollTo(0,document.body.scrollHeight)"
