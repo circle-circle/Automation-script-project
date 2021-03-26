@@ -1,10 +1,7 @@
 from PIL import Image
 import os
-import os.path
-from tqdm import tqdm
 import shutil
-import sys, os
-
+import sys
 
 path="C:/Users/Administrator/Downloads/"
 hengping_path="c:/hengping"
@@ -12,7 +9,6 @@ shuping_path="c:/shuping"
 
 files=os.listdir(path)
 keyword=".jpg"
-n=1
 for f in files:
     if keyword in f:
         picture = Image.open(path+f)
@@ -23,7 +19,6 @@ for f in files:
            shutil.move(path+f, hengping_path)
            print(f'{f} moved to {hengping_path}')
         else:
-           #shutil.move(lujing, hengping_path)
            shutil.move(path+f , shuping_path)
            print(f'{f} moved to {shuiping_path}')
     else:
